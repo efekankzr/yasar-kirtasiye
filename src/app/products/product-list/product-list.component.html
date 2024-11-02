@@ -1,0 +1,74 @@
+<div class="container my-3">
+  <div class="row">
+    <!-- Kategori Listesi -->
+    <div class="col-12 col-md-3 mb-3">
+      <button
+        class="btn btn-primary w-100 d-md-none mb-2"
+        type="button"
+        (click)="isCategoryListVisible = !isCategoryListVisible"
+      >
+        Kategoriler
+      </button>
+      <div [ngClass]="{ 'd-none': !isCategoryListVisible && isSmallScreen }">
+        <category-list></category-list>
+      </div>
+    </div>
+
+    <!-- Ürün Kartları -->
+    <div class="col-12 col-md-9">
+      <div *ngIf="!loading">
+        <div *ngIf="products.length > 0; else noProducts">
+          <ng-template
+            [ngTemplateOutlet]="productList"
+            [ngTemplateOutletContext]="{ products: products }"
+          ></ng-template>
+        </div>
+      </div>
+
+      <ng-template #productList let-products="products">
+        <h2>En Çok Satanlar</h2>
+        <div class="row">
+          <div
+            *ngFor="let product of products"
+            class="col-12 col-md-6 col-lg-4 mb-3"
+          >
+            <div class="card h-100">
+              <img
+                src="../../assets/img/{{ product.imgSrc }}"
+                class="card-img-top img-fluid"
+                alt="{{ product.imgSrc }}"
+                style="aspect-ratio: 4 / 3; object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price | currency : "TRY" }}</p>
+                <a
+                  routerLink="/products/{{ product.id }}"
+                  class="btn btn-outline-success"
+                  >Ürün Detay</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Ürünler Listesi Boşken Gelecek Ekran -->
+      <ng-template #noProducts>
+        <div class="alert alert-warning my-3 text-center">
+          <p>No products</p>
+        </div>
+      </ng-template>
+
+      <!-- Ürünler Listesi Yüklenme Ekranı -->
+      <div *ngIf="loading" class="d-flex align-items-center">
+        <strong>Ürünler yükleniyor...</strong>
+        <div
+          class="spinner-border ms-auto"
+          role="status"
+          aria-hidden="true"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
