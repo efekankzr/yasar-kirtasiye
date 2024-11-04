@@ -1,0 +1,20 @@
+<div class="list-group">
+  <a
+    (click)="selectBrand()"
+    class="list-group-item list-group-item-action"
+    [class.active]="displayAll"
+    routerLink="/brands"
+  >
+    Tüm Markalar
+  </a>
+
+  <a
+    *ngFor="let brand of brands"
+    routerLink="/products/brand/{{ brand.id }}"
+    (click)="selectBrand(brand)"
+    class="list-group-item list-group-item-action"
+    [class.active]="brand == selectedBrand"
+  >
+    {{ brand.name }}
+  </a>
+</div>

@@ -1,0 +1,12 @@
+<h3>Create Brand</h3>
+
+<form>
+  <div class="mb-3">
+    <label for="name" class="form-label">Marka İsmi</label>
+    <input #name type="text" name="name" id="name" class="form-control" />
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="saveBrand(name)">
+    Markayı Kaydet
+  </button>
+</form>

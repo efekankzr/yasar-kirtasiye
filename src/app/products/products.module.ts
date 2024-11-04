@@ -11,6 +11,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AdminGuard } from '../authentication/admin.guard';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { CategoriesModule } from '../categories/categories.module';
+import { BrandsModule } from '../brands/brands.module';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     AuthenticationModule,
     RouterModule.forChild(routes),
     CategoriesModule,
+    BrandsModule,
   ],
   exports: [ProductListComponent, ProductComponent, ProductCreateComponent],
 })

@@ -27,6 +27,9 @@
             >Create Category</a
           >
         </li>
+        <li *ngIf="isAdmin" class="nav-item">
+          <a routerLink="/brands/create" class="nav-link">Marka Oluştur</a>
+        </li>
       </ul>
       <ul class="navbar-nav me-2 mb-2 mb-lg-0">
         <li *ngIf="!isAuthenticated" class="nav-item">
